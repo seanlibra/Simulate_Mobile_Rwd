@@ -1,11 +1,20 @@
 <template>
-  <div id="nav">
+<RwdWin></RwdWin>
+  <!-- <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
-  </div>
+  </div> -->
   <router-view/>
 </template>
 
+<script>
+import RwdWin from '@/components/RwdWindow.vue'
+export default {
+  components: {
+    RwdWin
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -26,5 +35,8 @@
       color: #42b983;
     }
   }
+}
+body {
+  margin: 0;
 }
 </style>
