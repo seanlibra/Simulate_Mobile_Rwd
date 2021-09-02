@@ -1,16 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Laptop from '../views/Laptop.vue'
+// import Laptop from '../views/Laptop.vue'
 import Tablet from '../views/Tablet.vue'
 import Phone from '../views/Phone.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Laptop',
-    component: Laptop
-  },
-  {
-    path: '/tablet',
     name: 'Tablet',
     component: Tablet
   },

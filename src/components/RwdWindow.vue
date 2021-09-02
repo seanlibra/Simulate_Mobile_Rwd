@@ -1,14 +1,10 @@
 <template>
   <div class="rwd_win_root">
     <div class="header">
+    <h1 class="logo">space20rwd</h1>
       <ul>
         <li>
           <router-link to="/">
-            <i class="fas fa-laptop"></i>
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/tablet">
             <i class="fas fa-tablet-alt"></i>
           </router-link>
         </li>
@@ -23,10 +19,13 @@
 </template>
 
 <style scoped>
+.logo {
+  color:#ffffff;
+}
 .rwd_win_root .header {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 0 30px;
 }
 .rwd_win_root .header ul {
