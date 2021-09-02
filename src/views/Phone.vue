@@ -77,7 +77,7 @@
                         <span>{{race.name}}</span>
                         <span>下拉</span>
                     </div>
-                    <!-- <ul class="race_of_games">
+                    <ul class="race_of_games">
                         <li class="game" v-for="(game, index) in race.games" :key="index">
                             <div class="game_header">
                                 <div class="l_bk">
@@ -90,26 +90,50 @@
                                     <span>右邊</span>
                                 </div>
                             </div>
+                            <div v-if="game.streamer_living" class="game_situation">
+                              <div class="player">
+                                <img :src="game.player1.flag" alt="">
+                                <span>{{game.player1.name}}</span>
+                              </div>
+                              <div class="score">
+                                <span>
+                                  {{game.player1.score}} - {{game.player2.score}}
+                                </span>
+                              </div>
+                              <div class="player">
+                                <img :src="game.player2.flag" alt="">
+                                <span>{{game.player2.name}}</span>
+                              </div>
+                            </div>
                             <div class="game_info">
                                 <div class="l_bk">
+                                    <template v-if="!game.streamer_living">
                                     <div class="player">
+                                      <div class="player_info">
                                         <img :src="game.player1.flag" alt="">
                                         <span>{{game.player1.name}}</span>
-                                        <span>{{game.player1.score}}</span>
+                                      </div>
+                                        <span class="score">{{game.player1.score}}</span>
                                     </div>
                                     <div class="player">
-                                        <img :src="game.player2.flag" alt="">
-                                        <span>{{game.player2.name}}</span>
-                                        <span>{{game.player.score}}</span>
+                                        <div class="player_info">
+                                          <img :src="game.player2.flag" alt="">
+                                          <span>{{game.player2.name}}</span>
+                                        </div>
+                                        <span class="score">{{game.player2.score}}</span>
                                     </div>
+                                    </template>
+                                    <template v-if="game.streamer_living">
+                                      <a class="streamer" href="#" :style="`background:url(${game.streamer_info.profile})`"></a>
+                                    </template>
                                 </div>
                                 <div class="r_bk">
                                     <ul class="games_status_list">
-                                        <li v-for="(status, index) in games_status" :key="index">
-                                            <div>{{stauts.status_title}}</div>
-                                            <ul>
+                                        <li v-for="(status, index) in game.games_status" :key="index">
+                                            <div class="games_stauts_title">{{status.status_title}}</div>
+                                            <ul class="status_item_list">
                                                 <li v-for="(item, index) in status.status_list" :key="index">
-                                                    <span>{{item.name}}</span>
+                                                    <span class="name">{{item.name}}</span>
                                                     <span>{{item.score}}</span>
                                                 </li>
                                             </ul>
@@ -118,7 +142,7 @@
                                 </div>
                             </div>
                         </li>
-                    </ul> -->
+                    </ul>
                 </li>
             </ul>
           </div>
@@ -212,6 +236,7 @@ export default {
               name: '上半场',
               pinned: false,
               start_time: '02:23',
+              streamer_living: false,
               player1: {
                 flag: 'https://i.imgur.com/HZp8chV.png',
                 name: '亚特兰大联',
@@ -245,6 +270,182 @@ export default {
                 },
                 {
                   status_title: '全场让球',
+                  status_list: [
+                    {
+                      name: '-0.5/1',
+                      score: 1.94,
+                      status: 0
+                    },
+                    {
+                      name: '-0.5/1',
+                      score: 1.94,
+                      status: 0
+                    }
+                  ]
+                },
+                {
+                  status_title: '全场大小',
+                  status_list: [
+                    {
+                      name: '-0.5/1',
+                      score: 1.94,
+                      status: 0
+                    },
+                    {
+                      name: '-0.5/1',
+                      score: 1.94,
+                      status: 0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              name: '下半场',
+              pinned: false,
+              start_time: '02:23',
+              streamer_living: true,
+              streamer_info: {
+                name: '米兒',
+                profile: 'https://i.imgur.com/69z0kSA.jpg',
+                media: 'https://i.imgur.com/SELLV3E.png'
+              },
+              player1: {
+                flag: 'https://i.imgur.com/HZp8chV.png',
+                name: '亚特兰大联',
+                score: 2
+              },
+              player2: {
+                flag: 'https://i.imgur.com/4wXJq3o.png',
+                name: '莫塔瓜',
+                score: 0
+              },
+              games_status: [
+                {
+                  status_title: '全场独赢',
+                  status_list: [
+                    {
+                      name: '主胜',
+                      score: 3.25,
+                      status: 0
+                    },
+                    {
+                      name: '客胜',
+                      score: 3.45,
+                      status: 2
+                    },
+                    {
+                      name: '和局',
+                      score: 2.25,
+                      status: 1
+                    }
+                  ]
+                },
+                {
+                  status_title: '全场让球',
+                  status_list: [
+                    {
+                      name: '-0.5/1',
+                      score: 1.94,
+                      status: 0
+                    },
+                    {
+                      name: '-0.5/1',
+                      score: 1.94,
+                      status: 0
+                    }
+                  ]
+                },
+                {
+                  status_title: '全场大小',
+                  status_list: [
+                    {
+                      name: '-0.5/1',
+                      score: 1.94,
+                      status: 0
+                    },
+                    {
+                      name: '-0.5/1',
+                      score: 1.94,
+                      status: 0
+                    }
+                  ]
+                },
+                {
+                  status_title: '全场大小',
+                  status_list: [
+                    {
+                      name: '-0.5/1',
+                      score: 1.94,
+                      status: 0
+                    },
+                    {
+                      name: '-0.5/1',
+                      score: 1.94,
+                      status: 0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              name: '下半场',
+              pinned: false,
+              start_time: '02:23',
+              streamer_living: true,
+              streamer_info: {
+                name: '米兒',
+                profile: 'https://i.imgur.com/69z0kSA.jpg',
+                media: 'https://i.imgur.com/SELLV3E.png'
+              },
+              player1: {
+                flag: 'https://i.imgur.com/HZp8chV.png',
+                name: '亚特兰大联',
+                score: 2
+              },
+              player2: {
+                flag: 'https://i.imgur.com/4wXJq3o.png',
+                name: '莫塔瓜',
+                score: 0
+              },
+              games_status: [
+                {
+                  status_title: '全场独赢',
+                  status_list: [
+                    {
+                      name: '主胜',
+                      score: 3.25,
+                      status: 0
+                    },
+                    {
+                      name: '客胜',
+                      score: 3.45,
+                      status: 2
+                    },
+                    {
+                      name: '和局',
+                      score: 2.25,
+                      status: 1
+                    }
+                  ]
+                },
+                {
+                  status_title: '全场让球',
+                  status_list: [
+                    {
+                      name: '-0.5/1',
+                      score: 1.94,
+                      status: 0
+                    },
+                    {
+                      name: '-0.5/1',
+                      score: 1.94,
+                      status: 0
+                    }
+                  ]
+                },
+                {
+                  status_title: '全场大小',
                   status_list: [
                     {
                       name: '-0.5/1',
@@ -480,6 +681,127 @@ export default {
     font-size: 1.1rem;
     color:#4a4a4a;
 }
-.streamer_container .more {
+.race_list {
+  margin: 0;
+  padding: 0 5px;
+  list-style: none;
+  border-top:5px solid #ddecfd
+}
+.race_list .race_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid #dcdcdc;
+}
+.race_of_games {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.race_of_games .game_situation {
+  padding-top:10px ;
+  display: flex;
+  justify-content: space-around;
+}
+.race_of_games .game_situation .player  {
+  display: flex;
+}
+.race_of_games .game_situation .player:last-child {
+  flex-direction: row-reverse;
+}
+.race_of_games .game_situation  .score {
+  display: flex;
+  font-family: 'DINPro Bold';
+  font-size: 1.2rem;
+  color:rgba(79,130,244,1);
+}
+.race_of_games .game_situation .player img {
+  height:25px;
+  margin: 0 10px;
+}
+.race_of_games li .game_header {
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+}
+.race_of_games li:first-child .game_header {
+  border-top: 0;
+}
+.race_of_games li .game_header .l_bk a , .race_of_games li .game_header .l_bk span {
+  margin-right: 5px;
+}
+.game_info {
+  display: flex;
+  padding: 10px 0;
+}
+.game_info .l_bk {
+  width: 35%;
+  padding: 5px;
+}
+.game_info .l_bk .streamer {
+  display: block;
+  width: 100%;
+  height:100%;
+  background-size: cover!important;
+  background-position: center!important;
+}
+.game_info .l_bk .player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+.game_info .l_bk .player .player_info {
+  display: flex;
+}
+.game_info .l_bk .player img {
+  height:25px;
+  margin-right: 5px;
+}
+.game_info .r_bk {
+  width: 65%;
+  overflow-x: auto;
+}
+.game_info .r_bk::-webkit-scrollbar {
+  display: none;
+}
+.games_status_list {
+ margin: 0;
+ padding: 0;
+ list-style: none;
+ display: flex;
+ width: 100%;
+}
+.games_status_list > li {
+  min-width: 33.3%;
+  min-height: 200px;
+}
+.games_status_list li .games_stauts_title {
+  background: #f7f8fc;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+.status_item_list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  min-height:180px;
+
+}
+.status_item_list li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background:#f7f8fc;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  flex-grow: 1;
+}
+.status_item_list li .name {
+  color:#cfd3df;
 }
 </style>
