@@ -1,7 +1,6 @@
 <template>
   <div class="rwd_win_root">
     <div class="header">
-    <h1 class="logo">space20rwd</h1>
       <ul>
         <li>
           <router-link to="/">
@@ -25,7 +24,7 @@
 .rwd_win_root .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 0 30px;
 }
 .rwd_win_root .header ul {
