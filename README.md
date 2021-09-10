@@ -1,5 +1,3 @@
-# space20rwd
-
 ## Project setup
 ```
 npm install
